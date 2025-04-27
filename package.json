@@ -3,10 +3,11 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "build": "echo 'Build step complete'"
   },
   "dependencies": {
     "@thirdweb-dev/sdk": "^3.10.19",
-    "ethers": "^6.6.2"
+    "ethers": "^5.7.2"
   }
 }
