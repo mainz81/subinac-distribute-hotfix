@@ -1,29 +1,24 @@
-import { ThirdwebSDK } from "@thirdweb-dev/sdk";
-import { ethers } from "ethers";
-
 export default async function handler(req, res) {
-  if (req.method !== "POST") {
-    return res.status(405).send("Method not allowed");
+  if (req.method !== 'POST') {
+    return res.status(405).json({ error: 'Method Not Allowed' });
   }
 
-  try {
-    const sdk = ThirdwebSDK.fromPrivateKey(
-      process.env.PRIVATE_KEY,
-      "polygon",
-      {
-        secretKey: process.env.THIRDWEB_SECRET_KEY,
-      }
-    );
+  const { token, timestamp } = req.body;
 
-    const contract = await sdk.getContract(
-      "0xa1dBe1f5890ADa402d71aFa39900Bf38CD25bA34"
-    );
-
-    const transaction = await contract.call("distribute", []);
-
-    return res.status(200).json({ success: true, transaction });
-  } catch (error) {
-    console.error(error);
-    return res.status(500).json({ success: false, error: error.message });
+  if (!token || !timestamp) {
+    return res.status(400).json({ error: 'Missing required fields' });
   }
+
+  console.log('🌟 Webhook received!');
+  console.log('Token:', token);
+  console.log('Timestamp:', timestamp);
+
+  // Example: You could add your processing logic here.
+  // (right now we just confirm receipt)
+
+  return res.status(200).json({
+    success: true,
+    message: 'Webhook received successfully!',
+    received: { token, timestamp }
+  });
 }
