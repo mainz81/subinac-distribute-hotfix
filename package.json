@@ -1,14 +1,15 @@
 {
   "name": "subinac-distribute-hotfix",
   "version": "1.0.0",
-  "main": "api/index.js",
+  "private": true,
   "scripts": {
-    "start": "node api/index.js",
-    "build": "echo \"Build step complete!\""
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
   },
   "dependencies": {
-    "@thirdweb-dev/sdk": "^3.10.19",
-    "ethers": "^5.7.2"
+    "next": "^13.5.11",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
   }
 }
-
